@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title New Project
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags          
+  %body  
+    #wrap{ :style => "#{content_for :wrap_style}"}
+      .navbar.main.navbar-static-top
+        .navbar-inner
+          .container
+            =link_to 'New Project', root_path
+
+      .container{ :class => content_for(:container_class) }
+        - if flash[:notice] || flash[:error]
+          .row
+            .flash_layout{:style => "position: absolute; top: 60px; z-index: 10"}
+              .span12
+                - if flash[:notice]
+                  .alert
+                    %button.close{:"data-dismiss"=>"alert"}
+                      &times;
+                    = flash[:notice].html_safe
+                - if flash[:error]
+                  .alert
+                    %button.close{:"data-dismiss"=>"alert"}
+                      &times;
+                    = flash[:error].html_safe
+                - if flash[:alert]
+                  .alert
+                    %button.close{:"data-dismiss"=>"alert"}
+                      &times;
+                    = flash[:alert].html_safe
+        = content_for(:before_content) if content_for?(:before_content)
+        .content
+          = yield
+         
+    :javascript
+      $( function() {
+        #{content_for :javascript_templates}
+        #{content_for :javascript}
+      } );    
