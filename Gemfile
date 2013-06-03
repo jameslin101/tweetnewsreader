@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'awesome_print'
 gem 'json'
-gem 'haml'
+gem 'haml-rails'
 
 group :development do
   gem 'debugger'

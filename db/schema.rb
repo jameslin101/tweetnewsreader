@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603000609) do
+ActiveRecord::Schema.define(:version => 20130603004809) do
 
   create_table "widgets", :force => true do |t|
     t.string   "name"

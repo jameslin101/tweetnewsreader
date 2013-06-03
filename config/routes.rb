@@ -1,6 +1,10 @@
-Fundlocal::Application.routes.draw do
+Project::Application.routes.draw do
+
+  resources :thinggies
 
   root :to => "pages#home"
+
+  resources :widgets
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

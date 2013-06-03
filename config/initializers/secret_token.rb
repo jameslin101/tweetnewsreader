@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Fundlocal::Application.config.secret_token = '61fe8f0c995f52746a44749ae5d3121f63b57083c6872d9cd51fd18e8aeb74b988d416d24358def7bf5d49958085bcd2aa09caafc565aaf14ecd547cb36bc1ef'
+Project::Application.config.secret_token = '61fe8f0c995f52746a44749ae5d3121f63b57083c6872d9cd51fd18e8aeb74b988d416d24358def7bf5d49958085bcd2aa09caafc565aaf14ecd547cb36bc1ef'

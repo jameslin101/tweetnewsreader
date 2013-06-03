@@ -15,7 +15,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Fundlocal
+module Project
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -66,6 +66,11 @@ module Fundlocal
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    config.generators do |g|
+      g.stylesheets false
+      g.template_engine :haml
+    end
 
   end
 end
