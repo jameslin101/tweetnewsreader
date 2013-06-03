@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: fundlocal
+  database: random_project
   pool: 5
   username: postgres
   password: postgres
@@ -41,7 +41,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: fundlocal_test
+  database: random_project_test
   pool: 5
   username: postgres
   password: postgres
@@ -49,7 +49,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: fundlocal
+  database: random_project
   pool: 5
   username: postgres
   password: postgres
