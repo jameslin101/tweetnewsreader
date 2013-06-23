@@ -15,7 +15,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Project
+module Tweetnewsreader
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -43,7 +43,7 @@ module Project
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :secret, :token]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true

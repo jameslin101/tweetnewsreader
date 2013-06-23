@@ -1,0 +1,23 @@
+%h1 Todo List App
+
+/ = form_for @item do |f|
+/     = f.label :description, "Description"
+/     = f.text_field :description
+/   = f.submit
+
+= form_for @todo_list do |f|
+  
+  %h4 Incomplete Items
+
+  - f.fields_for :item do |builder|
+    = builder.label :description
+    = builder.check_box :completed_flag
+  / - incomplete_items.each do |incomplete_item|
+  /   = f.incomplete_item.description 
+        
+
+  %h4 Completed Items
+  - @completed_items.each do |completed_item|
+    = completed_item.description
+
+

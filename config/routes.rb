@@ -1,10 +1,9 @@
-Project::Application.routes.draw do
+Tweetnewsreader::Application.routes.draw do
 
-  resources :thinggies
-
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+                     controllers: {omniauth_callbacks: "omniauth_callbacks"}
   root :to => "pages#home"
 
-  resources :widgets
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

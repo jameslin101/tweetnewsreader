@@ -11,10 +11,16 @@
         .navbar-inner
           .container
             =link_to 'New Project', root_path
-
-      .container{ :class => content_for(:container_class) }
+            - if user_signed_in?
+              =link_to 'Edit profile', edit_user_registration_path
+              =link_to "Logout", destroy_user_session_path, method: :delete 
+            - else
+              =link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
+      .containe{ :class => content_for(:container_class) }
         .content
-          = yield
+          .row
+            .span12
+              = yield
          
     :javascript
       $( function() {

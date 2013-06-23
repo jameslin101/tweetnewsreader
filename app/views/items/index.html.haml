@@ -1,0 +1,22 @@
+%h1 Todo List App
+
+= form_for @new_item do |f|
+  = f.label :description, "Description"
+  = f.text_field :description
+  = f.hidden_field :completed_flag, :value => false
+  = f.submit
+
+  %h4 Incomplete Items
+
+= form_tag(update_all_items_path, :method => :post) do
+  - @incomplete_items.each do |incomplete_item|
+    %ul
+      %li
+        %span
+          = check_box_tag incomplete_item, :completed_flag
+          = incomplete_item.description
+  %h4 Completed Items
+  - @complete_items.each do |completed_item|
+    = completed_item.description 
+
+  = submit_tag "Update"

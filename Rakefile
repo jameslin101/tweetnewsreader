@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Project::Application.load_tasks
+Tweetnewsreader::Application.load_tasks
