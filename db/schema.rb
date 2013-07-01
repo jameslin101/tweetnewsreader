@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701004539) do
-
-  create_table "articles", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "tweet_id",   :limit => 8
-    t.boolean  "favorited"
-    t.boolean  "retweeted"
-    t.datetime "read_at"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130701021723) do
 
   create_table "host_categories", :force => true do |t|
     t.string   "host"
