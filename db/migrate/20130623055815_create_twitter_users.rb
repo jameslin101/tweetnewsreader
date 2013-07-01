@@ -14,5 +14,6 @@ class CreateTwitterUsers < ActiveRecord::Migration
       t.boolean :protected
       t.timestamps
     end
+    change_column :twitter_users, :id, 'bigint'
   end
 end

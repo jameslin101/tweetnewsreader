@@ -16,6 +16,8 @@ gem 'twitter'
 gem 'bitly'
 gem 'devise'
 gem 'omniauth-twitter'
+gem 'hirb'
+gem 'libxml-ruby'
 
 group :development do
   gem 'debugger'

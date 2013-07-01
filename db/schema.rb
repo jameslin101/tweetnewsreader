@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623080216) do
+ActiveRecord::Schema.define(:version => 20130701004539) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
@@ -23,20 +23,40 @@ ActiveRecord::Schema.define(:version => 20130623080216) do
     t.datetime "updated_at",              :null => false
   end
 
-  create_table "items", :force => true do |t|
-    t.string   "description"
-    t.boolean  "completed_flag"
-    t.integer  "todo_list_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+  create_table "host_categories", :force => true do |t|
+    t.string   "host"
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "todo_lists", :force => true do |t|
+  create_table "hosts", :force => true do |t|
     t.string   "name"
-    t.string   "completed_flag"
-    t.string   "boolean"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "timeline_tweets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "tweet_id",   :limit => 8
+    t.boolean  "favorited"
+    t.boolean  "retweeted"
+    t.datetime "read_at"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "tweets", :force => true do |t|
+    t.integer  "favorite_count"
+    t.integer  "twitter_user_id",    :limit => 8
+    t.integer  "retweet_count"
+    t.boolean  "possibly_sensitive"
+    t.string   "text"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "is_article"
+    t.string   "text_stripped"
   end
 
   create_table "twitter_users", :force => true do |t|
@@ -52,6 +72,17 @@ ActiveRecord::Schema.define(:version => 20130623080216) do
     t.boolean  "protected"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "url_entities", :force => true do |t|
+    t.integer  "tweet_id",           :limit => 8
+    t.string   "expanded_url"
+    t.string   "fully_expanded_url"
+    t.integer  "indice_start"
+    t.integer  "indice_end"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "host_name"
   end
 
   create_table "users", :force => true do |t|
@@ -70,16 +101,10 @@ ActiveRecord::Schema.define(:version => 20130623080216) do
     t.integer  "twitter_user_id",        :limit => 8
     t.string   "token"
     t.string   "secret"
+    t.integer  "since_id",               :limit => 8
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "widgets", :force => true do |t|
-    t.string   "name"
-    t.string   "purpose"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end

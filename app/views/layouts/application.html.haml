@@ -7,16 +7,18 @@
     = csrf_meta_tags          
   %body  
     #wrap{ :style => "#{content_for :wrap_style}"}
-      .navbar.main.navbar-static-top
-        .navbar-inner
-          .container
-            =link_to 'New Project', root_path
-            - if user_signed_in?
-              =link_to 'Edit profile', edit_user_registration_path
-              =link_to "Logout", destroy_user_session_path, method: :delete 
-            - else
-              =link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
-      .containe{ :class => content_for(:container_class) }
+      .container
+        .navbar
+          .navbar-inner
+            =link_to 'Tweet News Reader', root_path, :class => "brand"
+            %ul.nav.pull-right
+              %li
+                - if user_signed_in?
+                  =#link_to 'Edit profile', edit_user_registration_path
+                  =link_to "Logout", destroy_user_session_path, method: :delete 
+                - else
+                  =link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
+      .container{ :class => content_for(:container_class) }
         .content
           .row
             .span12

@@ -7,7 +7,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect user, notice: "Signed in!"
     else
       session["devise.user_attributes"] = user.attributes
-      redirect_to user_omniauth_authorize_path(:twitter)
+      redirect_to new_user_registration_path
     end
 
   end

@@ -1,5 +1,11 @@
-%h1 Welcome to a new project
-
-%p
-  =@things.inspect
-  
+%table.table.table-bordered
+  %tr
+    %th Article
+  -@articles.each do |article|
+    %tr
+      %td
+        =link_to "#{article.tweet.text_stripped} (#{article.tweet.url_entities.first.host_name})".html_safe, article.tweet.url.fully_expanded_url
+        %br
+        ="@#{article.tweet.twitter_user.screen_name}"
+        ="<icon class='icon-retweet'></icon> #{article.tweet.retweet_count}".html_safe
+        ="<icon class='icon-star'></icon> #{article.tweet.favorite_count}".html_safe

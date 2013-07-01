@@ -1,0 +1,7 @@
+%div{:style => "text-align: center"}
+  %h1
+    Welcome to Tweet News Reader
+  %h5
+    We are currently in Alpha. We are not affiliated with Twitter.
+  =link_to image_tag("https://dev.twitter.com/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"), user_omniauth_authorize_path(:twitter)
+

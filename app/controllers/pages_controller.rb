@@ -3,8 +3,14 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
-      @things = current_user.twitter_client.home_timeline
+      current_user.fetch_timeline
+      @articles = current_user.timeline.order(:created_at).limit(50)  
+    else
+      render :landing
     end
+  end
+
+  def landing
   end
 
 end

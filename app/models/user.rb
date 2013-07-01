@@ -9,10 +9,23 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  has_many :articles
+
+  has_many :timeline_tweets
+  # has_many :tweets, :through => :timeline_tweets
+
   belongs_to :twitter_user
 
+  def timeline
+    timeline_tweets.
+    where("user_id = ?", self.id).
+    joins(:tweet).
+    where("tweets.is_article IS TRUE")
+  end
+
+
   def self.from_omniauth(auth)
-    TwitterUser.from_raw_info!(auth.extra.raw_info)
+    TwitterUser.from_twitter_api!(auth.extra.raw_info)
 
     if !(user = User.find_by_twitter_user_id(auth.uid))
       user = User.new
@@ -60,8 +73,22 @@ class User < ActiveRecord::Base
     )
   end
 
-  # def pull_feed
-  #   @twitter_client.
+  def fetch_timeline
+    unless self.since_id
+      tweets = twitter_client.home_timeline(:count => 800)
+    else
+      tweets = twitter_client.home_timeline(:since_id => self.since_id)
+    end
+    if tweets.present?
+      tweets.each do |tweet_data|
+        tweet = Tweet.from_twitter_api!(tweet_data, self)
+      end
+      self.since_id = tweets.max_by(&:id).id
+      self.save!
+    end
+  end
+
+
 end
 
 
